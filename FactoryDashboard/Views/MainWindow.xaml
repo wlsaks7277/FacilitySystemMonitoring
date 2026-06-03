@@ -1,0 +1,51 @@
+﻿<Window x:Class="FactoryDashboard.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FactoryDashboard.Views"
+        mc:Ignorable="d"
+       Title="스마트 팩토리 모니터링 시스템" Height="350" Width="450">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,20">
+            <Button Content="서버 연결" Command="{Binding ConnectCommand}" Width="80" Height="30" Margin="0,0,10,0"/>
+            <Button Content="연결 종료" Command="{Binding DisconnectCommand}" Width="80" Height="30" Margin="0,0,20,0"/>
+            <TextBlock Text="상태: " VerticalAlignment="Center" FontWeight="Bold"/>
+            <TextBlock Text="{Binding ConnectionStatus}" VerticalAlignment="Center" Foreground="Blue"/>
+        </StackPanel>
+
+        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Background="#F9F9F9" Padding="15">
+            <StackPanel>
+                <TextBlock Text="[ 실시간 설비 현황 ]" FontSize="16" FontWeight="Bold" Margin="0,0,0,15" HorizontalAlignment="Center"/>
+
+                <UniformGrid Columns="2">
+                    <TextBlock Text="설비 ID:" Margin="5" FontSize="14" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Equipment.EquipmentId}" Margin="5" FontSize="14"/>
+
+                    <TextBlock Text="현재 온도:" Margin="5" FontSize="14" FontWeight="SemiBold"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Equipment.Temperature}" Margin="5" FontSize="14"/>
+                        <TextBlock Text="°C" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <TextBlock Text="현재 압력:" Margin="5" FontSize="14" FontWeight="SemiBold"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Equipment.Pressure}" Margin="5" FontSize="14"/>
+                        <TextBlock Text="Bar" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <TextBlock Text="누적 생산량:" Margin="5" FontSize="14" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Equipment.ProductionCount}" Margin="5" FontSize="14"/>
+
+                    <TextBlock Text="가동 상태:" Margin="5" FontSize="14" FontWeight="SemiBold"/>
+                    <TextBlock Text="{Binding Equipment.Status}" Margin="5" FontSize="14" FontWeight="Bold"/>
+                </UniformGrid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
